@@ -22,9 +22,9 @@ Route::get('/hello', function () {
 });
 
 Route::get('/about', function () {
-    return "About project page.";
+    return "About project page";
 });
 
 Route::get('/news', function () {
-    return "News page.";
+    return "News page";
 });
