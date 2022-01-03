@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\NewsController;
+use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\NewsIDController;
+use \App\Http\Controllers\AddNewsController;
+use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +20,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
 
-Route::get('/hello', function () {
-    return "Hello!";
-});
 
-Route::get('/about', function () {
-    return "About project page";
-});
+//admin
+//Route::group(['prefix'=>'admin','as'=>'admin.', function(){
+//    Route::resource('/news', [AdminNewsController::class]);
+//    Route::resource('/categories',[AdminCategoryController::class]);
+//}]);
 
-Route::get('/news', function () {
-    return "News page";
-});
+Route::get('/', [HomeController::class,'index'])
+    ->name('home.index');
+
+Route::get('/addNews', [AddNewsController::class,'index'])
+    ->name('addNews.index');
+
+Route::get('/categories', [CategoryController::class,'index'])
+    ->name('category.index');
+
+Route::get('/categories/{category}/', [NewsController::class,'index'])
+    ->name('news.index');
+
+Route::get('/categories/{category}/{id}', [NewsIDController::class,'index'])
+    ->where('id','\d+')
+    ->name('newsID.index');
+
+
