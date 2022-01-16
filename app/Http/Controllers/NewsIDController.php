@@ -11,7 +11,7 @@ class NewsIDController extends Controller
             abort(404);
         }
         $news = $this->getNewsById($id, $category);
-        return view('news.show',[
+        return view('layouts.newsItem',[
             'newsItem'=>$news,
             'category'=>$category
         ]);
