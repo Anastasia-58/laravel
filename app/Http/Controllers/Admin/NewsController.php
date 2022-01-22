@@ -24,8 +24,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        dump('new');
-        return 'new';
+
+        return view('admin.news.create');
     }
 
     /**
